@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+
+    <div id="form-container" class="w-full max-w-2xl bg-white shadow-xl rounded-2xl p-6 sm:p-10 border border-gray-100">
+
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Get in Touch</h1>
+        <p class="text-gray-500 mb-8">We'd love to hear from you! Fill out the details below.</p>
+
+        <!-- Form Success Message Box (Hidden by default) -->
+        <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg relative mb-6" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline"> Your form submission has been simulated.</span>
+        </div>
+
+        <!-- The Main HTML Form -->
+        <form id="contact-form" class="space-y-6">
+
+            <!-- Name and Email Group (Responsive Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Name Field -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                </div>
+
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                </div>
+            </div>
+
+            <!-- Subject Dropdown Field -->
+            <div>
+                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                <select id="subject" name="subject" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+                    <option value="" disabled selected>Select a subject</option>
+                    <option value="support">Technical Support</option>
+                    <option value="billing">Billing Inquiry</option>
+                    <option value="feedback">General Feedback</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Message Textarea Field -->
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="How can we help you today?" required
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"></textarea>
+            </div>
+
+            <!-- Checkbox for Subscription -->
+            <div class="flex items-center">
+                <input id="newsletter" name="newsletter" type="checkbox"
+                       class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                <label for="newsletter" class="ml-2 block text-sm text-gray-900">
+                    Sign up for our monthly newsletter.
+                </label>
+            </div>
+
+            <!-- Radio Buttons for Role Selection -->
+            <fieldset>
+                <legend class="text-sm font-medium text-gray-700 mb-2">What best describes you?</legend>
+                <div class="mt-2 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                    <div class="flex items-center">
+                        <input id="role-client" name="role" type="radio" value="client" checked
+                               class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                        <label for="role-client" class="ml-3 block text-sm font-medium text-gray-700">Client</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="role-partner" name="role" type="radio" value="partner"
+                               class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                        <label for="role-partner" class="ml-3 block text-sm font-medium text-gray-700">Partner</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="role-other" name="role" type="radio" value="other"
+                               class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                        <label for="role-other" class="ml-3 block text-sm font-medium text-gray-700">Other</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out transform hover:scale-[1.01] active:scale-[0.99]">
+                    Send Message
+                </button>
+            </div>
+
+        </form>
+    </div>
+    <title>Responsive HTML Form</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import for better aesthetics */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            // Prevent the default form submission (which would cause a page reload)
+            event.preventDefault();
+
+            // Display the success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.classList.remove('hidden');
+
+            // Optional: Log form data to console and clear the form
+            const formData = new FormData(event.target);
+            console.log('--- Form Submission Data ---');
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            // Reset the form after a short delay
+            setTimeout(() => {
+                event.target.reset();
+            }, 100);
+
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
